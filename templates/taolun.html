@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if title %}
+        讨论
+    {% else %}
+        音乐推荐系统
+    {% endif %}
+{% endblock %}
+{% block head %}
+    <style>
+        .indented-text {  
+            text-indent: 2em; /* 使用em单位进行缩进，这样可以相对于当前字体大小进行缩进 */ 
+            color: #1a1a1a;
+        }
+    </style>
+    
+{% endblock %}
+{% block body %}
+    <div class="list-group" style="margin-top: 20px">
+        
+        {% for comment in comments %}
+            <div href="#" class="list-group-item flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ comment.song.song_name }}</h5>
+                </div>
+                <small class="text-muted">流派：{{ comment.song.genre_ids }}</small>
+                <small class="text-muted">语种：{{ comment.song.language }}</small> 
+                <div class="text-muted">
+                    {{ comment.user.username }}: 在 {{ comment.comment_time }} 评论了 <a href="/play/{{ comment.song.id }}">《{{ comment.song.song_name }}》</a>
+                    <p class="indented-text">{{ comment.comment }}</p> 
+                </div>
+            </div>
+        {% empty %}
+            <div href="#" class="list-group-item flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ comments.song_id.song_name }}</h5>
+                </div>
+                <div>
+                    暂无评论
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <nav style="margin-top: 20px">
+        <div class="pagination justify-content-center">
+            第{{ comments.number }}页 共{{ comments.paginator.num_pages }}页
+        </div>
+    </nav>
+
+    <nav aria-label="Page navigation example" style="margin-top: 20px">
+        <ul class="pagination justify-content-center">
+            {% if comments.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+
+            <li class="page-item">
+                <a class="page-link" href="?page=1">1</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">...</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ comments.number|add:1 }}">{{ comments.number|add:1 }}</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ comments.number|add:2 }}">{{ comments.number|add:2 }}</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ comments.number|add:3 }}">{{ comments.number|add:3 }}</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ comments.number|add:4 }}">{{ comments.number|add:4 }}</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">...</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ comments.paginator.num_pages }}">{{ comments.paginator.num_pages }}</a>
+            </li>
+
+            {% if musics.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}

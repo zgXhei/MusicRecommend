@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}发布评论{% endblock %}
+{% block head %}
+    <style>
+        .input-container {  
+            width: 100%; /* 让容器宽度充满父元素 */
+            height: 300px;
+            position: relative; /* 为了后续可能的布局调整 */  
+        }  
+  
+        .input-container .form-control {  
+            width: 100%; /* 让input宽度充满容器 */  
+            height: 100%;
+            padding-left: 10px; /* 调整内边距使placeholder更加贴近左边 */  
+            padding-bottom: 280px;
+            box-sizing: border-box; /* 确保padding不会增加input的总宽度 */  
+        }
+        
+    </style>
+{% endblock %}
+{% block body %}
+<form method="post" class="comment-form" action="{% url 'create_comment' pk %} ">  
+    {% csrf_token %}  
+    <div class="card mb-3">  
+        <div class="card-header">发布评论</div>  
+        <div class="card-body">  
+            <div class="input-container">  
+                <input class="form-control mr-sm-2" type="text" name="comment" placeholder="输入评论" aria-label="Comment">  
+            </div>  
+            <div class="card-footer text-right">  
+                <button type="submit" class="btn btn-primary">发布评论</button>  
+            </div>  
+        </div>  
+    </div>  
+</form>
+{% endblock %}
