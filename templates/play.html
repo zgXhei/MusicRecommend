@@ -23,7 +23,14 @@
             /* 可选，设置背景图片的位置 */  
             background-position: center;  
         }
-        player{
+        .div-player{
+            position: fixed; /* 相对于浏览器窗口定位 */  
+            bottom: 0; /* 紧贴浏览器窗口底部 */  
+            background: black;
+            left: 10%; /* 左边距为浏览器宽度的10% */  
+            right: 10%; /* 右边距同样为浏览器宽度的10% */
+            width: auto; /* 不需要显式设置宽度，因为它将基于left和right自动计算 */
+            height: 120px;
             color: white;
         }
         .nav-margin{
