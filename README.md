@@ -1,6 +1,6 @@
 # MusicRecommend
 基于用户画像以及协同过滤的音乐推荐系统
-根据https://github.com/zhuxiangyualter/MusicRecommend的项目进行修改
+根据 https://github.com/zhuxiangyualter/MusicRecommend 的项目进行修改
 
 
 1.将基于用户的协同过滤算法与用户画像相结合进行推荐，提高推荐列表数据的成熟度。
